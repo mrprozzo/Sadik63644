@@ -21,6 +21,12 @@ const ThinSpinner = ({ className = "w-4 h-4" }: { className?: string }) => (
   </svg>
 );
 
+const CheckIcon = () => (
+  <svg className="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+  </svg>
+);
+
 const formatFileSize = (bytes: number) => {
   if (bytes === 0) return '0 Bytes';
   const k = 1024;
@@ -222,23 +228,21 @@ export const Converter: React.FC = () => {
           onChange={(e) => handleFiles(e.target.files)} 
         />
 
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-[11px] text-gray-400 font-semibold tracking-wide uppercase">
-          <div className="flex items-center justify-center space-x-1.5">
-            <div className="w-1 h-1 bg-green-500 rounded-full" />
-            <span>Free & Instant</span>
-          </div>
-          <div className="flex items-center justify-center space-x-1.5">
-            <div className="w-1 h-1 bg-green-500 rounded-full" />
-            <span>Private</span>
-          </div>
-          <div className="flex items-center justify-center space-x-1.5">
-            <div className="w-1 h-1 bg-green-500 rounded-full" />
-            <span>Unlimited</span>
-          </div>
-          <div className="flex items-center justify-center space-x-1.5">
-            <div className="w-1 h-1 bg-green-500 rounded-full" />
-            <span>High Def</span>
-          </div>
+        {/* Feature List with increased margin top */}
+        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-8 w-full max-w-3xl">
+          {[
+            'Free & Instant',
+            'Browser-Based',
+            'Privacy-Friendly',
+            'High Quality'
+          ].map((text) => (
+            <div key={text} className="flex items-center justify-center space-x-2">
+              <CheckIcon />
+              <span className="text-sm font-medium text-slate-600">
+                {text}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
