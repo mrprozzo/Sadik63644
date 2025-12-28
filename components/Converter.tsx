@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { Download, FileUp, X, AlertCircle, Archive, Clock } from 'lucide-react';
 import heic2any from 'heic2any';
@@ -194,19 +193,19 @@ export const Converter: React.FC = () => {
         onDragLeave={onDragLeave}
         onDrop={onDrop}
         onClick={triggerFileSelect}
-        className={`relative group bg-white border-2 border-dashed rounded-[2.5rem] p-12 transition-all duration-300 flex flex-col items-center justify-center text-center apple-shadow cursor-pointer ${
-          isDragging ? 'border-blue-500 bg-blue-50/30 scale-[1.01]' : 'border-gray-200'
+        className={`relative group bg-white border-2 border-dashed rounded-[3rem] p-14 transition-all duration-500 flex flex-col items-center justify-center text-center shadow-2xl shadow-black/5 cursor-pointer ${
+          isDragging ? 'border-blue-500 bg-blue-50/20 scale-[1.01]' : 'border-gray-200'
         }`}
       >
-        <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-          <FileUp className={`w-8 h-8 ${isDragging ? 'text-blue-500' : 'text-gray-400'}`} />
+        <div className="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+          <FileUp className={`w-10 h-10 ${isDragging ? 'text-blue-500' : 'text-gray-400'}`} />
         </div>
         
-        <h3 className="text-xl font-medium text-gray-900 mb-2">
+        <h3 className="text-2xl font-semibold text-gray-900 mb-3 tracking-tight">
           Drag & drop your HEIC images here
         </h3>
-        <p className="text-gray-400 mb-8 font-light tracking-tight">
-          or click anywhere to select files
+        <p className="text-gray-400 mb-10 font-light tracking-tight text-lg">
+          or click anywhere to select files from your device
         </p>
 
         <button 
@@ -214,7 +213,7 @@ export const Converter: React.FC = () => {
             e.stopPropagation();
             triggerFileSelect();
           }}
-          className="bg-[#0071e3] hover:bg-[#0077ed] text-white px-10 py-4 rounded-full font-semibold transition-all transform active:scale-95 apple-shadow-hover flex items-center space-x-2"
+          className="bg-[#0071e3] hover:bg-[#0077ed] text-white px-12 py-5 rounded-full text-lg font-semibold transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-blue-500/10 flex items-center space-x-3"
         >
           <span>Select HEIC Files</span>
         </button>
@@ -228,17 +227,17 @@ export const Converter: React.FC = () => {
           onChange={(e) => handleFiles(e.target.files)} 
         />
 
-        {/* Feature List with increased margin top */}
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-8 w-full max-w-3xl">
+        {/* Feature List Grid */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-12 w-full max-w-4xl border-t border-gray-100 pt-12">
           {[
             'Free & Instant',
             'Browser-Based',
             'Privacy-Friendly',
             'High Quality'
           ].map((text) => (
-            <div key={text} className="flex items-center justify-center space-x-2">
+            <div key={text} className="flex items-center justify-center space-x-3 group/item">
               <CheckIcon />
-              <span className="text-sm font-medium text-slate-600">
+              <span className="text-sm font-semibold text-gray-600 group-hover/item:text-gray-900 transition-colors">
                 {text}
               </span>
             </div>
@@ -247,32 +246,31 @@ export const Converter: React.FC = () => {
       </div>
 
       {files.length > 0 && (
-        <div ref={resultsRef} className="space-y-4 pt-4 animate-in slide-in-from-bottom-6 duration-700 ease-out">
-          <div className="flex items-center justify-between px-2">
+        <div ref={resultsRef} className="space-y-4 pt-8 animate-in slide-in-from-bottom-6 duration-700 ease-out">
+          <div className="flex items-center justify-between px-4">
             <div className="flex items-center space-x-3">
-              <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em]">
+              <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.25em]">
                 CONVERSION QUEUE ({files.length})
               </h4>
             </div>
             <button 
               onClick={() => setFiles([])}
-              className="text-xs font-medium text-gray-400 hover:text-red-500 transition-colors"
+              className="text-xs font-semibold text-gray-400 hover:text-red-500 transition-colors uppercase tracking-wider"
             >
               Clear All
             </button>
           </div>
           
-          <div className="bg-white border border-gray-100 rounded-[2rem] overflow-hidden apple-shadow">
+          <div className="bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden shadow-xl shadow-black/5">
             {files.map((fileState, index) => (
               <div 
                 key={fileState.id}
-                className={`flex items-center justify-between p-6 ${
+                className={`flex items-center justify-between p-7 ${
                   index !== files.length - 1 ? 'border-b border-gray-50' : ''
                 }`}
               >
-                <div className="flex items-center space-x-5 min-w-0 flex-grow">
-                  {/* Left Side: Thumbnail Image */}
-                  <div className="w-14 h-14 bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 border border-gray-100 relative">
+                <div className="flex items-center space-x-6 min-w-0 flex-grow">
+                  <div className="w-16 h-16 bg-gray-50 rounded-2xl overflow-hidden flex items-center justify-center flex-shrink-0 border border-gray-100 relative">
                     {fileState.status === 'completed' && fileState.resultUrl ? (
                       <img 
                         src={fileState.resultUrl} 
@@ -282,74 +280,72 @@ export const Converter: React.FC = () => {
                     ) : (
                       <div className="flex flex-col items-center">
                         {fileState.status === 'error' ? (
-                          <AlertCircle className="w-6 h-6 text-red-500" />
+                          <AlertCircle className="w-7 h-7 text-red-500" />
                         ) : (
-                          <FileUp className="w-6 h-6 text-gray-300" />
+                          <FileUp className="w-7 h-7 text-gray-300" />
                         )}
                       </div>
                     )}
                   </div>
                   
-                  {/* Middle Section: Name & Metadata */}
                   <div className="min-w-0 flex-grow flex flex-col justify-center">
-                    <div className="flex items-center space-x-2">
-                      <p className="text-sm font-semibold text-gray-900 truncate max-w-[160px] sm:max-w-xs">
+                    <div className="flex items-center space-x-3">
+                      <p className="text-base font-semibold text-gray-900 truncate max-w-[160px] sm:max-w-xs tracking-tight">
                         {fileState.file.name}
                       </p>
-                      {fileState.status === 'converting' && <ThinSpinner />}
-                      {fileState.status === 'error' && <AlertCircle className="w-3.5 h-3.5 text-red-500" />}
+                      {fileState.status === 'converting' && <ThinSpinner className="w-5 h-5" />}
+                      {fileState.status === 'error' && <AlertCircle className="w-4 h-4 text-red-500" />}
                     </div>
                     
-                    <p className="text-[12px] font-medium text-gray-400 mt-0.5">
+                    <p className="text-sm font-medium text-gray-400 mt-1">
                       {formatFileSize(fileState.file.size)}
-                      {fileState.status === 'converting' && <span className="ml-2 text-blue-500 animate-pulse text-[10px] font-bold uppercase tracking-tight">Processing</span>}
+                      {fileState.status === 'converting' && <span className="ml-3 text-blue-500 animate-pulse text-[11px] font-bold uppercase tracking-wider">Processing...</span>}
                     </p>
                   </div>
                 </div>
 
-                {/* Right Side: Actions */}
-                <div className="flex items-center space-x-4 ml-4">
+                <div className="flex items-center space-x-5 ml-4">
                   {fileState.status === 'completed' && fileState.resultUrl && (
                     <a 
                       href={fileState.resultUrl} 
                       download={fileState.file.name.replace(/\.[^/.]+$/, "") + ".jpg"}
-                      className="bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#0071e3] px-6 py-2.5 rounded-full text-xs font-bold transition-all flex items-center space-x-2 active:scale-95"
+                      className="bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#0071e3] px-7 py-3 rounded-full text-sm font-bold transition-all flex items-center space-x-2 active:scale-95"
                     >
                       <Download className="w-4 h-4" />
-                      <span className="hidden sm:inline uppercase tracking-wide">Download</span>
+                      <span className="hidden sm:inline uppercase tracking-widest">Download</span>
                     </a>
                   )}
                   <button 
                     onClick={() => removeFile(fileState.id)}
-                    className="p-2 text-gray-300 hover:text-red-500 transition-colors"
+                    className="p-2.5 text-gray-300 hover:text-red-500 transition-colors"
                     aria-label="Remove"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="w-6 h-6" />
                   </button>
                 </div>
               </div>
             ))}
 
             {completedCount >= 2 && !isAnyInQueue && (
-              <div className="p-8 bg-gray-50/40 border-t border-gray-100 flex flex-col items-center justify-center animate-in slide-in-from-bottom-4 duration-700 ease-out">
+              <div className="p-10 bg-gray-50/50 border-t border-gray-100 flex flex-col items-center justify-center animate-in slide-in-from-bottom-4 duration-700 ease-out">
                 <button 
                   onClick={downloadAll}
                   disabled={isZipping}
-                  className="bg-[#0071e3] hover:bg-[#0077ed] text-white px-12 py-5 rounded-full text-lg font-bold transition-all transform hover:scale-[1.03] active:scale-[0.97] flex items-center space-x-4 shadow-2xl shadow-blue-500/20"
+                  className="bg-[#0071e3] hover:bg-[#0077ed] text-white px-14 py-6 rounded-full text-xl font-bold transition-all transform hover:scale-[1.03] active:scale-[0.97] flex items-center space-x-5 shadow-2xl shadow-blue-500/25"
                 >
-                  {isZipping ? <ThinSpinner className="w-6 h-6 text-white" /> : <Archive className="w-6 h-6" />}
+                  {isZipping ? <ThinSpinner className="w-7 h-7 text-white" /> : <Archive className="w-7 h-7" />}
                   <span>{isZipping ? 'Packing ZIP...' : 'Download All (.ZIP)'}</span>
                 </button>
-                <p className="mt-4 text-[11px] text-gray-400 font-medium uppercase tracking-widest">
-                  {completedCount} Images Ready for Bulk Download
+                <p className="mt-5 text-[12px] text-gray-400 font-bold uppercase tracking-[0.25em]">
+                  {completedCount} Images ready for download
                 </p>
               </div>
             )}
           </div>
           
           {completedCount > 0 && (
-            <div className="mt-12 animate-in fade-in zoom-in-95 duration-1000">
-              <AdPlaceholder label="Conversion Ready" className="opacity-60" />
+            <div className="mt-16 animate-in fade-in zoom-in-95 duration-1000">
+              <AdPlaceholder label="Conversion Ready" className="opacity-70" />
             </div>
           )}
         </div>

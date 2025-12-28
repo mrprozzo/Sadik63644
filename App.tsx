@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Converter } from './components/Converter';
@@ -52,12 +51,12 @@ const App: React.FC = () => {
       <Header />
       
       <main className="flex-grow">
-        <section className="pt-6 md:pt-10 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-3">
+        <section className="pt-10 md:pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
               Convert HEIC to JPG
             </h1>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light">
+            <p className="text-xl text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
               High-quality image conversion that happens entirely in your browser. 
               Private, secure, and instant.
             </p>
@@ -71,7 +70,7 @@ const App: React.FC = () => {
           
           <InfoSection />
           
-          <div className="my-24 h-px bg-gray-100" />
+          <div className="my-24 h-px bg-gray-200" />
           
           <FAQ />
         </div>
