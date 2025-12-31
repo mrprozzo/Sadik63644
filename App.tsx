@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Converter } from './components/Converter';
@@ -51,12 +52,12 @@ const App: React.FC = () => {
       <Header />
       
       <main className="flex-grow">
-        <section className="pt-10 md:pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
+        <section className="pt-8 md:pt-16 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className="text-center mb-6 md:mb-12">
+            <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-2 md:mb-4 px-2">
               Convert HEIC to JPG
             </h1>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
+            <p className="text-base md:text-xl text-gray-500 max-w-2xl mx-auto font-light leading-relaxed px-4">
               High-quality image conversion that happens entirely in your browser. 
               Private, secure, and instant.
             </p>
@@ -65,12 +66,12 @@ const App: React.FC = () => {
           <Converter />
         </section>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-          <AdPlaceholder label="Advertisement" className="mb-24" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-10">
+          <AdPlaceholder label="Advertisement" className="mb-16 md:mb-24" />
           
           <InfoSection />
           
-          <div className="my-24 h-px bg-gray-200" />
+          <div className="my-16 md:my-24 h-px bg-gray-200" />
           
           <FAQ />
         </div>
